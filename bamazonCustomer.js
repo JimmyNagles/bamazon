@@ -28,7 +28,6 @@ connection.connect(function (err) {
  
 });
 
-
 function showProducts() {
   connection.query("SELECT * FROM products", function (err, res) {
     if (err) throw err;
@@ -86,10 +85,9 @@ function order(id, quantity){
 			console.log("Good news your order is in stock!");
 			console.log("Your total cost for " + quantity + " " +res[0].product_name + " is " + totalCost + " Thank you!");
 
-      console.log(quantity)
-      console.log(id)
-      connection.query('UPDATE products SET stock_quantity = stock_quantity -' + quantity+ 'WHERE id' + id+' ');
-      console.log("UPDATE products SET stock_quantity = stock_quantity - 1 WHERE id = 1")
+      
+      connection.query('UPDATE products SET stock_quantity = stock_quantity -' + quantity+ ' WHERE id = ' + id+' ');
+      
 
 		} else{
 			console.log("Insufficient quantity, sorry we do not have enough " + res[0].product_name + "to complete your order.");
